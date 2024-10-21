@@ -11,7 +11,7 @@ export default function RegistrationScreen() {
         resizeMode="cover"
         style={REGISTER_SCREEN_STYLES.backgroundImage}
       />
-        <RegisterForm/>
+      <RegisterForm/>
     </View>
   )
 }
