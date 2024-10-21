@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, ImageBackground, Linking, ScrollView, Text, TextInput, TouchableOpacity, View} from "react-native";
+import { Linking, Text, TextInput, TouchableOpacity, View} from "react-native";
 
 import {REGISTER_FORM_STYLES} from './styles';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, ScrollView, ImageBackground} from "react-native";
+import {View, ImageBackground} from "react-native";
 import {REGISTER_SCREEN_STYLES} from './styles';
 import RegisterForm from "@/components/RegisterForm/RegisterForm";
 
