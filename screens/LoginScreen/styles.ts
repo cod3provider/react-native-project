@@ -4,7 +4,7 @@ import {StyleSheet} from "react-native";
 export const REGISTER_SCREEN_STYLES = StyleSheet.create({
   container: {
     justifyContent: 'flex-end',
-    height: '100%',
+    height: '100%'
   },
   backgroundImage: {
     flex: 1,

@@ -1,10 +1,9 @@
 import {StyleSheet} from 'react-native';
 
-export const REGISTER_FORM_STYLES = StyleSheet.create({
+export const LOGIN_FORM_STYLES = StyleSheet.create({
   container: {
-    position: 'relative',
     width: '100%',
-    height: '65%',
+    height: '60%',
     paddingTop: 32,
     gap: 43,
     backgroundColor: '#FFFFFF',
@@ -13,17 +12,16 @@ export const REGISTER_FORM_STYLES = StyleSheet.create({
   },
   userImagePlaceholder: {
     position: 'absolute',
-    top: '10%',
+    top: '50%',
     left: '50%',
-    transform: [{ translateX: -60 }, { translateY: -100 }],
+    transform: [{ translateX: -60 }, { translateY: -120 }],
     width: 120,
     height: 120,
-    backgroundColor: '#F6F6F6',
+    backgroundColor: '#FFFFFF',
     borderRadius: 15,
-    zIndex: 1,
   },
   text: {
-    marginTop: 50,
+    marginTop: 0,
     fontFamily: "Roboto",
     fontSize: 30,
     fontWeight: '500',
