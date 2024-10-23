@@ -1,5 +1,5 @@
 import React from "react";
-import { Linking, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Image, Linking, Text, TextInput, TouchableOpacity, View} from "react-native";
 
 import {REGISTER_FORM_STYLES} from './styles';
 
@@ -10,24 +10,27 @@ export default function RegisterForm() {
 
   return (
     <View style={REGISTER_FORM_STYLES.container}>
+      <View style={REGISTER_FORM_STYLES.userImagePlaceholder}/>
+
       <Text style={REGISTER_FORM_STYLES.text}>Реєстрація</Text>
+
       <View style={REGISTER_FORM_STYLES.inputContainer}>
         <TextInput
           style={REGISTER_FORM_STYLES.input}
-          placeholderTextColor = '#BDBDBD'
-          selectionColor= '#212121'
+          placeholderTextColor='#BDBDBD'
+          selectionColor='#212121'
           placeholder="Логін"
         />
         <TextInput
           style={REGISTER_FORM_STYLES.input}
-          placeholderTextColor = '#BDBDBD'
-          selectionColor= '#212121'
+          placeholderTextColor='#BDBDBD'
+          selectionColor='#212121'
           placeholder="Адреса електронної пошти"
         />
         <TextInput
           style={REGISTER_FORM_STYLES.input}
-          placeholderTextColor = '#BDBDBD'
-          selectionColor= '#212121'
+          placeholderTextColor='#BDBDBD'
+          selectionColor='#212121'
           placeholder="Пароль"
         />
       </View>
@@ -41,6 +44,7 @@ export default function RegisterForm() {
 
         <View style={REGISTER_FORM_STYLES.textContainer}>
           <Text style={REGISTER_FORM_STYLES.textLink}>Вже є акаунт?</Text>
+
           <TouchableOpacity onPress={openLink}>
             <Text style={REGISTER_FORM_STYLES.textLink}>Увійти</Text>
           </TouchableOpacity>
