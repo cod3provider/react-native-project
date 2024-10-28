@@ -17,4 +17,18 @@ export const REGISTER_SCREEN_STYLES = StyleSheet.create({
   text: {
     fontSize: 16,
   },
+  plusButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 25,
+    height: 25,
+    borderWidth: 1,
+    borderRadius: 50,
+    borderColor: '#FF6C00',
+    position: 'absolute',
+    top: 30,
+    right: 140,
+    zIndex: 1,
+  },
 })
