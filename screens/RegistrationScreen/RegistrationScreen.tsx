@@ -6,11 +6,14 @@ import {
   Keyboard,
   TouchableOpacity,
   Text,
-  KeyboardAvoidingView, Platform, TextInput, Linking, SafeAreaView, Dimensions
+  KeyboardAvoidingView,
+  Platform,
+  Linking,
+  SafeAreaView,
 } from "react-native";
+
 import {REGISTER_SCREEN_STYLES} from './styles';
-// import RegisterForm from "@/components/RegisterForm/RegisterForm";
-// import {REGISTER_FORM_STYLES} from "@/components/RegisterForm/styles";
+
 import AddButton from "@/assets/icons/AddButton";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
@@ -70,7 +73,7 @@ export default function RegistrationScreen() {
               resizeMode="cover"
               style={REGISTER_SCREEN_STYLES.backgroundImage}
             />
-            {/*<RegisterForm/>*/}
+
             <View style={REGISTER_SCREEN_STYLES.registerFormContainer}>
               <View style={REGISTER_SCREEN_STYLES.userImagePlaceholder}/>
 
