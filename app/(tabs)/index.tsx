@@ -9,6 +9,7 @@ export default function HomeScreen() {
     'Roboto-Medium': require('@/assets/fonts/Roboto-Medium.ttf'),
     'Roboto-Bold': require('@/assets/fonts/Roboto-Bold.ttf'),
   })
+
   return (
     <RegistrationScreen/>
     // <LoginScreen />
