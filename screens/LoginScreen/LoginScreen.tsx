@@ -1,23 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Image,
   Text,
-  TextInput,
   TouchableOpacity,
   Linking,
   Platform,
   Keyboard,
   KeyboardAvoidingView, TouchableWithoutFeedback, SafeAreaView
 } from "react-native";
-// import {REGISTER_SCREEN_STYLES} from './styles';
-// import LoginForm from "@/components/LoginForm/LoginForm";
-// import {LOGIN_FORM_STYLES} from "@/components/LoginForm/styles";
+
 import {LOGIN_SCREEN_STYLES} from "@/screens/LoginScreen/styles";
+import Input from "@/components/Input/Input";
+import Button from "@/components/Button/Button";
 
 export default function LoginScreen() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+
   const openLink = () => {
     Linking.openURL('#');
+  }
+
+  const onEmailChange = (value: string) => {
+    setEmail(value);
+  }
+
+  const onPasswordChange = (value: string) => {
+    setPassword(value);
+  }
+
+  const showPassword = () => {
+    setIsPasswordVisible(prev => !prev);
+  }
+
+  const showPassButton = (
+    <TouchableOpacity
+      onPress={showPassword}
+      style={LOGIN_SCREEN_STYLES.buttonShow}
+    >
+      <Text style={LOGIN_SCREEN_STYLES.buttonShowText}>
+        {(isPasswordVisible ? 'Показати' : 'Сховати')}
+      </Text>
+    </TouchableOpacity>
+  )
+
+  const onLogin = () => {
+    console.log(`email: ${email}, password: ${password}`);
   }
 
   return (
@@ -33,32 +63,33 @@ export default function LoginScreen() {
               resizeMode="cover"
               style={LOGIN_SCREEN_STYLES.backgroundImage}
             />
-            {/*<LoginForm/>*/}
 
             <View style={LOGIN_SCREEN_STYLES.loginFormContainer}>
               <Text style={LOGIN_SCREEN_STYLES.text}>Увійти</Text>
 
               <View style={LOGIN_SCREEN_STYLES.inputContainer}>
-                <TextInput
-                  style={LOGIN_SCREEN_STYLES.input}
-                  placeholderTextColor='#BDBDBD'
+                <Input
+                  value={email}
+                  onTextChange={onEmailChange}
                   selectionColor='#212121'
                   placeholder="Адреса електронної пошти"
                 />
-                <TextInput
-                  style={LOGIN_SCREEN_STYLES.input}
-                  placeholderTextColor='#BDBDBD'
+                <Input
+                  value={password}
+                  onTextChange={onPasswordChange}
                   selectionColor='#212121'
                   placeholder="Пароль"
+                  secureTextEntry={isPasswordVisible}
+                  additionalComponent={showPassButton}
                 />
               </View>
 
               <View style={LOGIN_SCREEN_STYLES.buttonsContainer}>
-                <TouchableOpacity style={LOGIN_SCREEN_STYLES.registerBtn}>
+                <Button onPress={onLogin} style={LOGIN_SCREEN_STYLES.registerBtn}>
                   <Text style={LOGIN_SCREEN_STYLES.registerBtnText}>
                     Увійти
                   </Text>
-                </TouchableOpacity>
+                </Button>
 
                 <View style={LOGIN_SCREEN_STYLES.textContainer}>
                   <Text style={LOGIN_SCREEN_STYLES.textLink}>Немає акаунту?</Text>

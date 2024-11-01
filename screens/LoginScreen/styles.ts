@@ -3,18 +3,6 @@ import {Dimensions, StyleSheet} from "react-native";
 const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 
 export const LOGIN_SCREEN_STYLES = StyleSheet.create({
-  // container: {
-  //   justifyContent: 'flex-end',
-  //   height: '100%'
-  // },
-  // backgroundImage: {
-  //   flex: 1,
-  //   position: 'absolute',
-  //   top: 0,
-  //   left: 0,
-  //   width: '100%',
-  //   height: '100%',
-  // },
   container: {
     justifyContent: 'flex-end',
     height: '100%'
@@ -57,15 +45,6 @@ export const LOGIN_SCREEN_STYLES = StyleSheet.create({
     paddingHorizontal: 16,
     gap: 16,
   },
-  input: {
-    padding: 16,
-    fontSize: 16,
-    fontWeight: '400',
-    backgroundColor: '#F6F6F6',
-    borderWidth: 1,
-    borderColor: '#E8E8E8',
-    borderRadius: 8,
-  },
   buttonsContainer: {
     gap: 16,
     justifyContent: 'center',
@@ -95,7 +74,14 @@ export const LOGIN_SCREEN_STYLES = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
   },
-  // text: {
-  //   fontSize: 16,
-  // },
+  buttonShow: {
+    borderColor: '#FF6C00',
+    position: 'absolute',
+    top: '100%',
+    right: '5%',
+  },
+  buttonShowText: {
+    color: '#1B4371',
+    fontSize: 16,
+  },
 })
