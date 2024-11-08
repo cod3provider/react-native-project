@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {
   View,
   Image,
@@ -8,7 +8,6 @@ import {
   Text,
   KeyboardAvoidingView,
   Platform,
-  Linking,
   SafeAreaView,
 } from "react-native";
 
@@ -17,8 +16,12 @@ import {REGISTER_SCREEN_STYLES} from './styles';
 import AddButton from "@/assets/icons/AddButton";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
+import {NativeStackScreenProps} from "react-native-screens/native-stack";
+import {StackParamsList} from "@/navigation/StackNavigator";
 
-export default function RegistrationScreen() {
+type HomeScreenProps = NativeStackScreenProps<StackParamsList, 'Register'>;
+
+const RegistrationScreen: FC<HomeScreenProps> = ({ navigation, route }) => {
   const [login, setLogin] = useState('');
   const [mail, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +29,7 @@ export default function RegistrationScreen() {
 
   const onRegister = () => {
     console.log(`login: ${login}, mail: ${mail}, password: ${password}`);
+    navigation.navigate('Home');
   }
 
   const handleNameChange = (value: string) => {
@@ -41,7 +45,7 @@ export default function RegistrationScreen() {
   }
 
   const openLink = () => {
-    Linking.openURL('#');
+    navigation.navigate('Login');
   }
 
   const showPassword = () => {
@@ -129,3 +133,5 @@ export default function RegistrationScreen() {
     </KeyboardAvoidingView>
   )
 }
+
+export default RegistrationScreen;

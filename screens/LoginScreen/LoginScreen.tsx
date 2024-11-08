@@ -1,26 +1,34 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {
   View,
   Image,
   Text,
   TouchableOpacity,
-  Linking,
   Platform,
   Keyboard,
-  KeyboardAvoidingView, TouchableWithoutFeedback, SafeAreaView
+  KeyboardAvoidingView, TouchableWithoutFeedback, SafeAreaView, Alert
 } from "react-native";
 
 import {LOGIN_SCREEN_STYLES} from "@/screens/LoginScreen/styles";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
+import {NativeStackScreenProps} from "react-native-screens/native-stack";
+import {StackParamsList} from "@/navigation/StackNavigator";
 
-export default function LoginScreen() {
+type HomeScreenProps = NativeStackScreenProps<StackParamsList, 'Login'>;
+
+const LoginScreen: FC<HomeScreenProps> =({ navigation, route }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
 
+  // useEffect(() => {
+  //   console.log(route)
+  //   console.log('route?.params?: ', route);
+  // }, [])
+
   const openLink = () => {
-    Linking.openURL('#');
+    navigation.navigate('Register');
   }
 
   const onEmailChange = (value: string) => {
@@ -47,7 +55,8 @@ export default function LoginScreen() {
   )
 
   const onLogin = () => {
-    console.log(`email: ${email}, password: ${password}`);
+    // console.log(`email: ${email}, password: ${password}`);
+    navigation.navigate('Home');
   }
 
   return (
@@ -106,3 +115,5 @@ export default function LoginScreen() {
     </KeyboardAvoidingView>
   )
 }
+
+export default LoginScreen;

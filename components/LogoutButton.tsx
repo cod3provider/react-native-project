@@ -1,4 +1,4 @@
-import {ButtonProps, TouchableOpacity} from "react-native";
+import {TouchableOpacity} from "react-native";
 import {FC} from "react";
 import LogoutIcon from "@/assets/icons/LogoutIcon";
 

@@ -18,7 +18,7 @@ export const REGISTER_SCREEN_STYLES = StyleSheet.create({
   registerFormContainer: {
     position: 'relative',
     width: SCREEN_WIDTH,
-    height: '65%',
+    height: '80%',
     paddingTop: 32,
     gap: 43,
     backgroundColor: '#FFFFFF',
