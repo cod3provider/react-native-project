@@ -1,7 +1,7 @@
+import 'react-native-gesture-handler';
 import {useFonts} from "expo-font";
 
-import RegistrationScreen from "@/screens/RegistrationScreen/RegistrationScreen";
-import LoginScreen from "@/screens/LoginScreen/LoginScreen";
+import StackNavigator from "@/navigation/StackNavigator";
 
 export default function HomeScreen() {
   const [useLoaded] = useFonts({
@@ -11,7 +11,6 @@ export default function HomeScreen() {
   })
 
   return (
-    // <RegistrationScreen/>
-    <LoginScreen />
+    <StackNavigator/>
   );
 }
