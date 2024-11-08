@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {TextInput, View} from "react-native";
+import {TextInput, View, ViewStyle} from "react-native";
 import {styles} from "@/components/Input/styles";
 
 type InputProps = {
@@ -9,6 +9,7 @@ type InputProps = {
   onTextChange: (text: string) => void,
   secureTextEntry?: boolean,
   additionalComponent?: React.ReactNode,
+  style?: ViewStyle,
 }
 
 const Input: FC<InputProps> = ({
@@ -18,10 +19,11 @@ const Input: FC<InputProps> = ({
                                  onTextChange,
                                  secureTextEntry = false,
                                  additionalComponent,
+                                 style,
                                }) => {
   return (
     <View
-      style={styles.input}
+      style={[styles.input, style]}
     >
       <TextInput
         value={value}
