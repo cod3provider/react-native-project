@@ -1,6 +1,5 @@
 import {Text, TouchableOpacity, View} from "react-native";
 import styles from "@/screens/CreatePostsScreen/styles";
-import {REGISTER_SCREEN_STYLES} from "@/screens/RegistrationScreen/styles";
 import Input from "@/components/Input/Input";
 import React, {useState} from "react";
 import PhotoIcon from "@/assets/icons/PhotoIcon";
