@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   Platform,
   Keyboard,
-  KeyboardAvoidingView, TouchableWithoutFeedback, SafeAreaView, Alert
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  SafeAreaView,
 } from "react-native";
 
 import {LOGIN_SCREEN_STYLES} from "@/screens/LoginScreen/styles";
