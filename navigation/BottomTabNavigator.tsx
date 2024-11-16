@@ -5,6 +5,7 @@ import LogoutButton from "@/components/LogoutButton";
 import PostsScreen from "@/screens/PostsScreen/PostsScreen";
 import CreatePostsScreen from "@/screens/CreatePostsScreen/CreatePostsScreen";
 import ProfileScreen from "@/screens/ProfileScreen/ProfileScreen";
+import MapScreen from "@/screens/MapScreen/MapScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -60,7 +61,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={MapScreen}
         options={{
           tabBarIcon: ({focused}) => <Ionicons name="person-outline" size={24} color={focused ? '#FF6C00' : 'black'} />,
           headerRight: () => <LogoutButton onPress={() => console.log('Pressed')} />,
