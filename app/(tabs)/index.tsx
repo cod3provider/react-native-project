@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import {useFonts} from "expo-font";
 
 import StackNavigator from "@/navigation/StackNavigator";
+import {NavigationContainer} from "@react-navigation/native";
 
 export default function HomeScreen() {
   const [useLoaded] = useFonts({
@@ -11,6 +12,8 @@ export default function HomeScreen() {
   })
 
   return (
-    <StackNavigator/>
+    <NavigationContainer>
+      <StackNavigator/>
+    </NavigationContainer>
   );
 }
