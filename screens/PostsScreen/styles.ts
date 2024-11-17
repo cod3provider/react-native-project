@@ -5,6 +5,7 @@ const POST_SCREEN_STYLES = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     paddingVertical: 32,
     paddingHorizontal: 16,
+    gap: 32,
   },
   imageContainer: {
     gap: 8,
@@ -24,6 +25,20 @@ const POST_SCREEN_STYLES = StyleSheet.create({
     color: 'rgba(33, 33, 33, 0.80)',
     fontSize: 11,
     fontWeight: 400,
+  },
+  post: {
+
+  },
+  postImage: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 240,
+    borderRadius: 8,
+  },
+  text: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 

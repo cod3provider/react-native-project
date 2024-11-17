@@ -5,7 +5,7 @@
 
 import React, {useState, useRef} from "react";
 import {Text, View, TouchableOpacity, Image} from "react-native";
-import {Camera, CameraType, CameraView, useCameraPermissions} from "expo-camera";
+import {CameraType, CameraView, useCameraPermissions} from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 
 import Input from "@/components/Input/Input";
@@ -122,8 +122,6 @@ import styles from "@/screens/CreatePostsScreen/styles";
 //
 // export default CreatePostsScreen;
 
-
-import CameraRotate from "@/assets/icons/CameraRotate";
 
 // export default function CameraScreen() {
 //   const [facing, setFacing] = useState<CameraType>('back');
