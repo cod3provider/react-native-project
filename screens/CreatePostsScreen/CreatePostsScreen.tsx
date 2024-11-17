@@ -2,14 +2,21 @@
 // import {Button, Text, TouchableOpacity, View} from "react-native";
 // import {Camera, CameraType, CameraView, useCameraPermissions} from 'expo-camera';
 // import * as MediaLibrary from 'expo-media-library';
-//
+
+import React, {useState, useRef} from "react";
+import {Text, View, TouchableOpacity, Image} from "react-native";
+import {Camera, CameraType, CameraView, useCameraPermissions} from "expo-camera";
+import * as MediaLibrary from "expo-media-library";
+
 import Input from "@/components/Input/Input";
 import PhotoIcon from "@/assets/icons/PhotoIcon";
 import DeletePhotoIcon from "@/assets/icons/DeletePhotoIcon";
-//
-import styles from "@/screens/CreatePostsScreen/styles";
+import CrossIcon from "@/assets/icons/CrossIcon";
 import CameraRotateIcon from "@/assets/icons/CameraRotate";
-//
+import Button from "@/components/Button/Button";
+
+import styles from "@/screens/CreatePostsScreen/styles";
+
 // type Props = {};
 //
 // const CreatePostsScreen: FC<Props> = () => {
@@ -116,11 +123,6 @@ import CameraRotateIcon from "@/assets/icons/CameraRotate";
 // export default CreatePostsScreen;
 
 
-import React, {useState, useEffect, useRef} from "react";
-import {Text, View, TouchableOpacity, StyleSheet, Button} from "react-native";
-import {Camera, CameraType, CameraView, useCameraPermissions} from "expo-camera";
-import * as MediaLibrary from "expo-media-library";
-import CrossIcon from "@/assets/icons/CrossIcon";
 import CameraRotate from "@/assets/icons/CameraRotate";
 
 // export default function CameraScreen() {
@@ -173,7 +175,8 @@ import CameraRotate from "@/assets/icons/CameraRotate";
 //   );
 // }
 
-export default function CameraScreen() {
+
+export default function CameraScreen({ onAddpost }) {
   const [name, setName] = useState('');
   const [photoPicture, setPhotoPicture] = useState(null);
   const [location, setLocation] = useState('');
@@ -202,17 +205,19 @@ export default function CameraScreen() {
     setFacing(current => (current === 'back' ? 'front' : 'back'));
   }
 
-
   const takePhoto = async () => {
     if (!camera) return;
 
     const image = await camera?.current?.takePictureAsync();
     console.log('image', image.uri)
-    await MediaLibrary.saveToLibraryAsync(image.uri);
-    setPhotoPicture(await MediaLibrary.saveToLibraryAsync(image.uri));
-    console.log(photoPicture);
-  }
 
+    if (image.uri) {
+      await MediaLibrary.saveToLibraryAsync(image.uri);
+      setPhotoPicture(image.uri);
+      toggleOpeningCamera();
+      console.log('SavedPhoto: ', image.uri);
+    }
+  }
 
   const toggleOpeningCamera = () => {
     setOpenCamera(!openCamera);
@@ -225,6 +230,18 @@ export default function CameraScreen() {
 
   const handleLocationChange = (value: string) => {
     setLocation(value);
+  }
+
+  const onSubmitForm = () => {
+    if (name && location && photoPicture) {
+      onAddpost({name, location, photoPicture});
+
+      setName('');
+      setPhotoPicture(null);
+      setLocation('');
+    } else {
+      console.log('Add data to all fields');
+    }
   }
 
   return (
@@ -265,7 +282,7 @@ export default function CameraScreen() {
             <View style={styles.rotateCameraButtonContainer}>
               <TouchableOpacity style={styles.RotateCameraIcon} onPress={toggleCameraFacing}>
                 {/*<Text style={styles.text}>Flip Camera</Text>*/}
-                <CameraRotateIcon />
+                <CameraRotateIcon/>
               </TouchableOpacity>
             </View>
 
@@ -275,21 +292,29 @@ export default function CameraScreen() {
           </CameraView>
         ) : (
           //!! сделать проверку - если мы достукиваемся до картинки то торисовывать картинку, нет, то контейнер
-
-          <View style={styles.camera}>
-            <View style={styles.imagePlaceholder}>
-              {/*<TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>*/}
-              {/*  /!*<Text style={styles.text}>Flip Camera</Text>*!/*/}
-              {/*/!*<CameraRotateIcon/>*!/*/}
-              {/*</TouchableOpacity>*/}
-              <TouchableOpacity style={styles.openCameraButton} onPress={toggleOpeningCamera}>
-                <PhotoIcon/>
-              </TouchableOpacity>
-            </View>
+          <View >
+            {photoPicture ? (
+              <View style={styles.photoWrap}>
+                <Image source={{uri: photoPicture}} style={styles.imagePicture}/>
+                <TouchableOpacity style={styles.takePhotoIcon} onPress={takePhoto}>
+                  {/*<Text style={styles.text}>Take Photo</Text>*/}
+                  <PhotoIcon/>
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <View style={styles.camera}>
+                {/*<TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>*/}
+                {/*  /!*<Text style={styles.text}>Flip Camera</Text>*!/*/}
+                {/*/!*<CameraRotateIcon/>*!/*/}
+                {/*</TouchableOpacity>*/}
+                <TouchableOpacity style={styles.openCameraButton} onPress={toggleOpeningCamera}>
+                  <PhotoIcon/>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         )
       }
-
 
       <View style={styles.inputWrapper}>
         <Input
@@ -308,9 +333,9 @@ export default function CameraScreen() {
         />
       </View>
 
-      <TouchableOpacity style={styles.button}>
+      <Button style={styles.buttonSubmit} onPress={onSubmitForm}>
         <Text style={styles.buttonText}>Опубліковати</Text>
-      </TouchableOpacity>
+      </Button>
 
       <TouchableOpacity style={styles.deleteIcon}>
         <DeletePhotoIcon/>
