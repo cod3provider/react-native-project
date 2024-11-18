@@ -27,7 +27,7 @@ const POST_SCREEN_STYLES = StyleSheet.create({
     fontWeight: 400,
   },
   post: {
-
+    gap: 8,
   },
   postImage: {
     justifyContent: 'center',
@@ -36,9 +36,39 @@ const POST_SCREEN_STYLES = StyleSheet.create({
     height: 240,
     borderRadius: 8,
   },
+  nameText: {
+    color: '#212121',
+    fontSize: 16,
+    fontWeight: 500,
+  },
+  commentWrap: {
+    flexDirection: 'row',
+    gap: 6,
+    alignItems: 'center',
+  },
+  commentsText: {
+    color: '#BDBDBD',
+    fontSize: 16,
+    fontWeight: 400,
+  },
   text: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  locationWrap: {
+    flexDirection: 'row',
+    gap: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  locationText: {
+    color: '#212121',
+    textAlign: 'right',
+    fontSize: 16,
+    fontWeight: 400,
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'solid',
   },
 });
 
