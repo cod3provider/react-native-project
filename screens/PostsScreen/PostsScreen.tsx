@@ -1,5 +1,5 @@
 import React from "react";
-import {Image, Text, TouchableOpacity, View} from "react-native";
+import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import styles from "@/screens/PostsScreen/styles";
 import CommentIcon from "@/assets/icons/CommentIcon";
 import LocationIcon from "@/assets/icons/LocationIcon";
@@ -25,8 +25,12 @@ const PostsScreen: React.FC<PostsScreenProps> = ({posts}) => {
     navigation.navigate('Comments', {post});
   }
 
+  const openMap = () => {
+    navigation.navigate('Maps');
+  }
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={require('@/assets/images/Rectangle 22.png')}/>
         <View>
@@ -51,10 +55,12 @@ const PostsScreen: React.FC<PostsScreenProps> = ({posts}) => {
               <Text style={styles.commentsText}>0</Text>
 
               <View style={styles.locationWrap}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={openMap}
+                >
                   <LocationIcon/>
+                  <Text style={styles.locationText}>{post.location}</Text>
                 </TouchableOpacity>
-                <Text style={styles.locationText}>{post.location}</Text>
               </View>
             </View>
           </View>
@@ -76,14 +82,16 @@ const PostsScreen: React.FC<PostsScreenProps> = ({posts}) => {
           </TouchableOpacity>
 
           <View style={styles.locationWrap}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={openMap}
+            >
               <LocationIcon/>
             </TouchableOpacity>
             <Text style={styles.locationText}>Ukraine</Text>
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 

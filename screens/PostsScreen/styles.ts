@@ -2,6 +2,7 @@ import {StyleSheet} from "react-native";
 
 const POST_SCREEN_STYLES = StyleSheet.create({
   container: {
+    height: '100%',
     backgroundColor: '#FFFFFF',
     paddingVertical: 32,
     paddingHorizontal: 16,

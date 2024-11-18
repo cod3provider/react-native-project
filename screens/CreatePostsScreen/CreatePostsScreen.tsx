@@ -1,12 +1,9 @@
-// import React, {FC, useEffect, useRef, useState} from "react";
-// import {Button, Text, TouchableOpacity, View} from "react-native";
-// import {Camera, CameraType, CameraView, useCameraPermissions} from 'expo-camera';
-// import * as MediaLibrary from 'expo-media-library';
-
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {Text, View, TouchableOpacity, Image} from "react-native";
 import {CameraType, CameraView, useCameraPermissions} from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
+import * as Location from 'expo-location';
+import {useNavigation} from "@react-navigation/native";
 
 import Input from "@/components/Input/Input";
 import PhotoIcon from "@/assets/icons/PhotoIcon";
@@ -24,8 +21,42 @@ export default function CameraScreen({onAddpost}) {
   const [openCamera, setOpenCamera] = useState(false);
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
-  const [permissionResponse, requestLibraryPermission] = MediaLibrary.usePermissions();
+  // const [permissionResponse, requestLibraryPermission] = MediaLibrary.usePermissions();
   const camera = useRef();
+  const [cameraPermission, requestCameraPermission] = useCameraPermissions();
+  const [libraryPermission, requestLibraryPermission] = MediaLibrary.usePermissions();
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        console.log('Permission to access location was denied');
+        return;
+      }
+
+      const userLocation = await Location.getCurrentPositionAsync({});
+      const userAddress = await getAddressFromCoords(
+        userLocation.coords.latitude,
+        userLocation.coords.longitude
+      );
+
+      setLocation(userAddress); // Установить адрес в поле "Місцевість"
+    })();
+  }, []);
+
+  const getAddressFromCoords = async (latitude: number, longitude: number) => {
+    try {
+      const [address] = await Location.reverseGeocodeAsync({ latitude, longitude });
+      if (address) {
+        return `${address.city || ''}, ${address.country || ''}`.trim();
+      }
+      return '';
+    } catch (error) {
+      console.log('Error fetching address:', error);
+      return '';
+    }
+  };
 
   if (!permission) {
     // Camera permissions are still loading.
@@ -80,9 +111,24 @@ export default function CameraScreen({onAddpost}) {
       setName('');
       setPhotoPicture(null);
       setLocation('');
+      navigation.navigate('Posts');
     } else {
       console.log('Add data to all fields');
     }
+  }
+
+  if (!cameraPermission || !libraryPermission) {
+    return <View />;
+  }
+
+  if (!cameraPermission.granted || !libraryPermission.granted) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.message}>We need your permission to use the camera and library</Text>
+        <Button onPress={requestCameraPermission} title="Grant Camera Permission" />
+        <Button onPress={requestLibraryPermission} title="Grant Library Permission" />
+      </View>
+    );
   }
 
   return (
@@ -93,14 +139,12 @@ export default function CameraScreen({onAddpost}) {
           <CameraView ref={camera} style={styles.camera} facing={facing}>
             <View style={styles.takePhotoButtonContainer}>
               <TouchableOpacity style={styles.takePhotoIcon} onPress={takePhoto}>
-                {/*<Text style={styles.text}>Take Photo</Text>*/}
                 <PhotoIcon/>
               </TouchableOpacity>
             </View>
 
             <View style={styles.rotateCameraButtonContainer}>
               <TouchableOpacity style={styles.RotateCameraIcon} onPress={toggleCameraFacing}>
-                {/*<Text style={styles.text}>Flip Camera</Text>*/}
                 <CameraRotateIcon/>
               </TouchableOpacity>
             </View>
@@ -147,7 +191,7 @@ export default function CameraScreen({onAddpost}) {
       </View>
 
       <Button style={styles.buttonSubmit} onPress={onSubmitForm}>
-        <Text style={styles.buttonText}>Опубліковати</Text>
+        <Text style={styles.buttonText}>Опублікувати</Text>
       </Button>
 
       <TouchableOpacity style={styles.deleteIcon}>
