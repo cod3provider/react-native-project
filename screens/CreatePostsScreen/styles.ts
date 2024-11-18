@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-export const CREATE_POSTS_SCREEN_STYLES = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     gap: 32,
     height: '100%',
@@ -54,10 +54,77 @@ export const CREATE_POSTS_SCREEN_STYLES = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: '#FFFFFF',
   },
-  button: {
+  camera: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 240,
+    borderRadius: 8,
+    borderColor: '#E8E8E8',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    backgroundColor: '#F6F6F6',
+  },
+  openCameraButton: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 16,
+    borderRadius: 100,
+  },
+  takePhotoButtonContainer: {
+    position: 'absolute',
+    bottom: '60%',
+    left: '44%',
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+  },
+  takePhotoIcon: {
+    position: 'absolute',
+    top: '41%',
+    left: '44%',
+    zIndex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 24,
+    paddingHorizontal: 24,
+    width: 24,
+    height: 24,
+    borderRadius: 100,
+    backgroundColor: '#F6F6F6',
+  },
+  rotateCameraButtonContainer: {
+    position: 'absolute',
+    bottom: '5%',
+    right: '5%',
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+  },
+  RotateCameraIcon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 14,
+    paddingHorizontal: 14,
+    width: 18,
+    height: 18,
+    borderRadius: 100,
+    backgroundColor: '#F6F6F6',
+  },
+  closeCameraButton: {
+    position: 'absolute',
+    top: '2%',
+    right: '1%',
+    zIndex: 1,
+  },
+  buttonSubmit: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 12,
+    width: '100%',
+    paddingVertical: 16,
+    paddingHorizontal: 32,
     borderRadius: 100,
     backgroundColor: '#F6F6F6',
   },
@@ -76,6 +143,19 @@ export const CREATE_POSTS_SCREEN_STYLES = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: '#F6F6F6',
   },
+  photoWrap: {
+    position: 'relative',
+  },
+  imagePicture: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 240,
+    borderRadius: 8,
+  },
+  // captureButton: {},
+  // image: {},
+  // message: {},
 });
 
-export default CREATE_POSTS_SCREEN_STYLES;
+export default styles;

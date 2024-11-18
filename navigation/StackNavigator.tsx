@@ -2,6 +2,9 @@ import {createStackNavigator} from "@react-navigation/stack";
 import LoginScreen from "@/screens/LoginScreen/LoginScreen";
 import RegistrationScreen from "@/screens/RegistrationScreen/RegistrationScreen";
 import BottomTabNavigator from "@/navigation/BottomTabNavigator";
+import CommentsScreen from "@/screens/CommentsScreen/CommentsScreen";
+import MapScreen from "@/screens/MapScreen/MapScreen";
+import PostsScreen from "@/screens/PostsScreen/PostsScreen";
 
 const Stack = createStackNavigator();
 
@@ -9,6 +12,9 @@ export type StackParamsList = {
   Home: undefined;
   Login: undefined;
   Register: undefined;
+  Comments: undefined;
+  Maps: undefined;
+  Posts: undefined;
 };
 
 const StackNavigator = () => {
@@ -22,6 +28,21 @@ const StackNavigator = () => {
       <Stack.Screen
         name="Register"
         component={RegistrationScreen}
+      />
+
+      <Stack.Screen
+        name="Comments"
+        component={CommentsScreen}
+      />
+
+      <Stack.Screen
+        name="Maps"
+        component={MapScreen}
+      />
+
+      <Stack.Screen
+        name="Posts"
+        component={PostsScreen}
       />
 
       <Stack.Screen
