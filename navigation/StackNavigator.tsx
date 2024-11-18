@@ -2,6 +2,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import LoginScreen from "@/screens/LoginScreen/LoginScreen";
 import RegistrationScreen from "@/screens/RegistrationScreen/RegistrationScreen";
 import BottomTabNavigator from "@/navigation/BottomTabNavigator";
+import CommentsScreen from "@/screens/CommentsScreen/CommentsScreen";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,11 @@ const StackNavigator = () => {
       <Stack.Screen
         name="Register"
         component={RegistrationScreen}
+      />
+
+      <Stack.Screen
+        name="Comments"
+        component={CommentsScreen}
       />
 
       <Stack.Screen
