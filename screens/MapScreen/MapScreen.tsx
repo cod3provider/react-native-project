@@ -57,8 +57,8 @@ const MapScreen = () => {
         // minZoomLevel={15}
         // provider={PROVIDER_GOOGLE}
         showsUserLocation={true}
-        onMapReady={() => console.log("Map is ready")}
-        onRegionChange={() => console.log("Region change")}
+        // onMapReady={() => console.log("Map is ready")}
+        // onRegionChange={() => console.log("Region change")}
       >
         {location !== null && (
           <Marker
