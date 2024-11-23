@@ -81,19 +81,19 @@ export default function CameraScreen({onAddpost}) {
     if (!camera) return;
 
     const image = await camera?.current?.takePictureAsync();
-    console.log('image', image.uri)
+    // console.log('image', image.uri)
 
     if (image.uri) {
       await MediaLibrary.saveToLibraryAsync(image.uri);
       setPhotoPicture(image.uri);
       toggleOpeningCamera();
-      console.log('SavedPhoto: ', image.uri);
+      // console.log('SavedPhoto: ', image.uri);
     }
   }
 
   const toggleOpeningCamera = () => {
     setOpenCamera(!openCamera);
-    console.log(openCamera);
+    // console.log(openCamera);
   }
 
   const handleNameChange = (value: string) => {
