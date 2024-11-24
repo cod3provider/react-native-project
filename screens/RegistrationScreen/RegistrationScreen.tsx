@@ -18,18 +18,24 @@ import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {StackParamsList} from "@/navigation/StackNavigator";
+import {registerDB} from "@/utils/auth";
 
 type HomeScreenProps = NativeStackScreenProps<StackParamsList, 'Register'>;
 
 const RegistrationScreen: FC<HomeScreenProps> = ({ navigation, route }) => {
   const [login, setLogin] = useState('');
-  const [mail, setEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
 
-  const onRegister = () => {
-    console.log(`login: ${login}, mail: ${mail}, password: ${password}`);
-    navigation.navigate('Home');
+  const onRegister = async () => {
+    console.log(`login: ${login}, mail: ${email}, password: ${password}`);
+    const success = await registerDB({email, password, login});
+
+    if (success) {
+      console.log('Registration successful');
+    }
+    // navigation.navigate('Posts');
   }
 
   const handleNameChange = (value: string) => {
@@ -98,7 +104,7 @@ const RegistrationScreen: FC<HomeScreenProps> = ({ navigation, route }) => {
                 <Input
                   placeholder="Адреса електронної пошти"
                   selectionColor='#212121'
-                  value={mail}
+                  value={email}
                   onTextChange={handleEmailChange}
                 />
                 <Input

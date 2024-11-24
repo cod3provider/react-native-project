@@ -8,6 +8,8 @@ import CreatePostsScreen from "@/screens/CreatePostsScreen/CreatePostsScreen";
 import MapScreen from "@/screens/MapScreen/MapScreen";
 import {useState} from "react";
 import {ParamListBase} from "@react-navigation/native";
+import {logoutDB} from "@/utils/auth";
+import {useDispatch} from "react-redux";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +23,7 @@ type CreatePostsScreenProps = BottomTabScreenProps<ParamListBase, 'Create Posts'
 
 
 const BottomTabNavigator = () => {
+  const dispatch = useDispatch();
   const [posts, setPosts] = useState<Post[]>([]);
 
   const handleAddPost = (post: Post) => {
@@ -64,7 +67,7 @@ const BottomTabNavigator = () => {
         // component={PostsScreen}
         initialParams={{posts}}
         options={{
-          headerRight: () => <LogoutButton onPress={() => console.log('Pressed')} />,
+          headerRight: () => <LogoutButton onPress={() => logoutDB(dispatch)} />,
           // title: '',
           tabBarIcon: ({focused}) => <Ionicons name="grid-outline" size={24} color={focused ? '#FF6C00' : 'black'} />,
         }}
