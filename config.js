@@ -11,11 +11,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const firebaseConfig = {
   apiKey: 'AIzaSyDiVAY7XLV61RriUlYGT3iKbbLOYTb3eNs',
   authDomain: 'neoversity-8ec31.firebaseapp.com',
-  databaseURL: '<https://neoversity-8ec31.firebaseio.com>',
   projectId: 'neoversity-8ec31',
-  storageBucket: 'neoversity-8ec31.appspot.com',
-  appId: '1:964283961121:ios:dc69213d0ace40590bf860',
-  messagingSenderId: '964283961121',
+  storageBucket: 'gs://neoversity-8ec31.firebasestorage.app',
+  // appId: '1:964283961121:ios:dc69213d0ace40590bf860',
+  // messagingSenderId: '964283961121',
+  // databaseURL: '<https://neoversity-8ec31.firebaseio.com>',
   // measurementId: 'G-measurement-id',
 };
 

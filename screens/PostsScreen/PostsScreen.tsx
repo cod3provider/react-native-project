@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import styles from "@/screens/PostsScreen/styles";
 import CommentIcon from "@/assets/icons/CommentIcon";
 import LocationIcon from "@/assets/icons/LocationIcon";
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from "react-redux";
+import {RootState} from "@/redux/store/store";
 
 type Post = {
   name: string;
@@ -16,10 +18,11 @@ type PostsScreenProps = {
 };
 
 const PostsScreen: React.FC<PostsScreenProps> = ({posts}) => {
-  // разобраться с navigation, route
+  const userInfo = useSelector((state: RootState) => state.user.userInfo);
+  console.log('posts', posts)
+  console.log(userInfo);
+  const [userName, setUserName] = useState<string>(userInfo?.displayName || '');
   const navigation = useNavigation();
-
-  // const {posts} = route.params;
 
   const openLink = (post) => {
     navigation.navigate('Comments', {post});
@@ -34,8 +37,8 @@ const PostsScreen: React.FC<PostsScreenProps> = ({posts}) => {
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={require('@/assets/images/Rectangle 22.png')}/>
         <View>
-          <Text style={styles.title}>Natali Romanova</Text>
-          <Text style={styles.subtitle}>email@example.com</Text>
+          <Text style={styles.title}>{userInfo?.displayName}</Text>
+          <Text style={styles.subtitle}>{userInfo?.displayName}</Text>
         </View>
       </View>
       {posts?.length > 0 && (

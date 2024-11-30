@@ -7,6 +7,7 @@ import MapScreen from "@/screens/MapScreen/MapScreen";
 import PostsScreen from "@/screens/PostsScreen/PostsScreen";
 import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store/store";
+import CameraScreen from "@/screens/CameraScreen/CameraScreen";
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,10 @@ const StackNavigator = () => {
           <Stack.Screen
             name="Register"
             component={RegistrationScreen}
+          />
+          <Stack.Screen
+            name="Camera"
+            component={CameraScreen}
           />
         </>
       )}

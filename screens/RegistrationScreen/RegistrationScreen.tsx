@@ -30,7 +30,7 @@ const RegistrationScreen: FC<HomeScreenProps> = ({ navigation, route }) => {
 
   const onRegister = async () => {
     console.log(`login: ${login}, mail: ${email}, password: ${password}`);
-    const success = await registerDB({email, password, login});
+    const success = await registerDB({email, password, displayName: login});
 
     if (success) {
       console.log('Registration successful');

@@ -10,6 +10,8 @@ import {useState} from "react";
 import {ParamListBase} from "@react-navigation/native";
 import {logoutDB} from "@/utils/auth";
 import {useDispatch} from "react-redux";
+import ProfileScreen from "@/screens/ProfileScreen/ProfileScreen";
+import CreatePostNavigator from "@/navigation/CreatePostNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -56,10 +58,6 @@ const BottomTabNavigator = () => {
         tabBarLabelStyle: {
           margin: 0,
         },
-        // tabBarLabelStyle: {
-        //   paddingTop: 0,
-        //   margin: 0,
-        // }
       }}
     >
       <Tab.Screen
@@ -77,7 +75,7 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Create Posts"
-        // component={CreatePostsScreen}
+        component={CreatePostNavigator}
         // component={(props) => <CreatePostsScreen {...props} onAddpost={handleAddPost()} />}
         // component={(props: CreatePostsScreenProps) => (
         //   <CreatePostsScreen {...props} onAddpost={handleAddPost} />
@@ -90,11 +88,12 @@ const BottomTabNavigator = () => {
         {/*{(props: CreatePostsScreenProps) => (*/}
         {/*  <CreatePostsScreen {...props} onAddpost={handleAddPost} />*/}
         {/*)}*/}
-        {(props) => <CreatePostsScreen {...props} onAddpost={handleAddPost} />}
+        {/*{(props) => <CreatePostsScreen {...props} onAddpost={handleAddPost} />}*/}
       </Tab.Screen>
       <Tab.Screen
         name="Profile"
-        component={MapScreen}
+        // component={MapScreen}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({focused}) => <Ionicons name="person-outline" size={24} color={focused ? '#FF6C00' : 'black'} />,
           headerRight: () => <LogoutButton onPress={() => console.log('Pressed')} />,
