@@ -16,10 +16,14 @@ import Input from "@/components/Input/Input";
 import Button from "@/components/Button/Button";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {StackParamsList} from "@/navigation/StackNavigator";
+import {loginDB} from "@/utils/auth";
+import {useDispatch} from "react-redux";
 
 type HomeScreenProps = NativeStackScreenProps<StackParamsList, 'Login'>;
 
 const LoginScreen: FC<HomeScreenProps> =({ navigation, route }) => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
@@ -56,9 +60,14 @@ const LoginScreen: FC<HomeScreenProps> =({ navigation, route }) => {
     </TouchableOpacity>
   )
 
-  const onLogin = () => {
-    // console.log(`email: ${email}, password: ${password}`);
-    navigation.navigate('Home');
+  const onLogin = async () => {
+    console.log(`email: ${email}, password: ${password}`);
+    try {
+      await loginDB({email, password}, dispatch);
+    } catch (err) {
+      console.log('Login error:', err)
+    }
+    // navigation.navigate('Home');
   }
 
   return (

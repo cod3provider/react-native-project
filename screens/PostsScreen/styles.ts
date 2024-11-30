@@ -28,6 +28,7 @@ const POST_SCREEN_STYLES = StyleSheet.create({
     fontWeight: 400,
   },
   post: {
+    marginTop: 32,
     gap: 8,
   },
   postImage: {
@@ -71,6 +72,11 @@ const POST_SCREEN_STYLES = StyleSheet.create({
     textDecorationLine: 'underline',
     textDecorationStyle: 'solid',
   },
+  profileImage: {
+    width: '100%',
+    height: 'auto',
+    display: 'flex',
+  }
 });
 
 export default POST_SCREEN_STYLES;

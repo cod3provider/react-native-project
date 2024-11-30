@@ -16,7 +16,7 @@
       "config": {
         "googleMapsApiKey": "AIzaSyCw5RG5hV0guHJOEenpb6afKt2MGSZB_Tw"
       },
-      "bundleIdentifier": "com.projectapp",
+      "bundleIdentifier": "com.reactapp",
       "infoPlist": {
         "UIBackgroundModes": [
           "location",
