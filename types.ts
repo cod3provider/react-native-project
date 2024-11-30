@@ -4,3 +4,11 @@ export interface UserData {
   displayName?: string;
   profilePhoto?: string;
 };
+
+export type Post = {
+  id: string;
+  name: string;
+  location: string;
+  photoPicture: string;
+  comments: Comment[];
+};

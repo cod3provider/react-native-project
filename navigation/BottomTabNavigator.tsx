@@ -75,7 +75,7 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Create Posts"
-        component={CreatePostNavigator}
+        // component={CreatePostNavigator}
         // component={(props) => <CreatePostsScreen {...props} onAddpost={handleAddPost()} />}
         // component={(props: CreatePostsScreenProps) => (
         //   <CreatePostsScreen {...props} onAddpost={handleAddPost} />
@@ -88,7 +88,7 @@ const BottomTabNavigator = () => {
         {/*{(props: CreatePostsScreenProps) => (*/}
         {/*  <CreatePostsScreen {...props} onAddpost={handleAddPost} />*/}
         {/*)}*/}
-        {/*{(props) => <CreatePostsScreen {...props} onAddpost={handleAddPost} />}*/}
+        {(props) => <CreatePostNavigator {...props} onAddpost={handleAddPost} />}
       </Tab.Screen>
       <Tab.Screen
         name="Profile"

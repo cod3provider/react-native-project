@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import styles from "@/screens/PostsScreen/styles";
 import CommentIcon from "@/assets/icons/CommentIcon";
@@ -8,24 +8,36 @@ import {useSelector} from "react-redux";
 import {RootState} from "@/redux/store/store";
 
 type Post = {
+  // name: string;
+  // location: string;
+  // photoPicture: string;
+  id: string; // Уникальный ID
   name: string;
   location: string;
   photoPicture: string;
+  comments: Comment[];
 };
 
 type PostsScreenProps = {
   posts: Post[];
 };
 
-const PostsScreen: React.FC<PostsScreenProps> = ({posts}) => {
+const PostsScreen: React.FC<PostsScreenProps> = () => {
+  const posts = useSelector((state: RootState) => state.posts.posts);
+
+  useEffect(() => {
+    console.log('Обновленные посты:', posts);
+    console.log('Обновленные посты:', JSON.stringify(posts, null, 2));
+  }, [posts]);
+
   const userInfo = useSelector((state: RootState) => state.user.userInfo);
   console.log('posts', posts)
   console.log(userInfo);
   const [userName, setUserName] = useState<string>(userInfo?.displayName || '');
   const navigation = useNavigation();
 
-  const openLink = (post) => {
-    navigation.navigate('Comments', {post});
+  const openLink = (postId: number) => {
+    navigation.navigate('Comments', {postId});
   }
 
   const openMap = () => {
@@ -50,7 +62,7 @@ const PostsScreen: React.FC<PostsScreenProps> = ({posts}) => {
 
             <View style={styles.text}>
               <TouchableOpacity
-                onPress={openLink}
+                onPress={() => openLink(index)}
                 style={styles.commentWrap}
               >
                 <CommentIcon/>

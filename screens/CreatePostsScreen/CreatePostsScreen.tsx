@@ -201,8 +201,6 @@
 //   );
 // }
 
-
-
 import { FC, useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons'
@@ -220,6 +218,7 @@ import { RootState } from "@/redux/store/store";
 import {colors} from "@/styles/styles";
 import InputText from "@/components/TextInput";
 import ButtonTouchable from "@/components/ButtonstTouchable/ButtonTouchable";
+import {addPostReducer} from "@/redux/reducers/postsSlice";
 
 const PLACES_KEY = "AIzaSyAhxqfyeRiiSj3Os9KyN3TcVFCxk6hQqh0";
 
@@ -284,6 +283,18 @@ const CreatePostScreen: FC<ScreenProps> = ({ navigation, route }) => {
   const onPublish = async () => {
     if (!user) return;
 
+    // if (!title || !address || !selectedImage) {
+    //   alert('Заполните все поля!');
+    //   return;
+    // }
+    dispatch(
+      addPostReducer({
+        name: title,
+        location: address,
+        photoPicture: selectedImage,
+      })
+    );
+
     try {
       await addPost(user?.uid, {
         id: 'post',
@@ -293,6 +304,11 @@ const CreatePostScreen: FC<ScreenProps> = ({ navigation, route }) => {
     } catch (error) {
       console.log(error)
     }
+
+    setTitle('');
+    setAddress('');
+    setSelectedImage('');
+    navigation.navigate('Posts');
   }
 
   return (
